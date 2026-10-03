@@ -1,0 +1,164 @@
+<div class="login-page">
+
+
+  <section class="brand-section">
+
+    <div class="brand-content">
+
+      <div class="brand-logo">
+        <div class="logo-icon">DV</div>
+
+        <div class="logo-text">
+          <strong>Teste tecnico</strong>
+          <span>TRANSPORTES</span>
+        </div>
+      </div>
+
+      <div class="brand-message">
+        <h1>
+          Conectando destinos,
+          <span>movendo o seu negócio.</span>
+        </h1>
+
+        <p>
+          Acesso aos nossos sistemas e serviços
+          logísticos de forma segura e eficiente.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="truck-background"></div>
+
+  </section>
+
+
+  <section class="form-section">
+
+    <div class="login-container">
+
+      <div class="form-logo">
+        <div class="logo-icon">Teste</div>
+
+        <div class="logo-text">
+          <strong>Teste tecnico</strong>
+          <span>TRANSPORTES</span>
+        </div>
+      </div>
+
+
+      <div class="welcome">
+        <h2>Bem-vindo!</h2>
+
+        <p>
+          Faça login para continuar
+        </p>
+      </div>
+
+
+      <form>
+
+  
+        <div class="form-group">
+
+          <label for="email">
+            E-mail
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              
+            </span>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="Digite seu e-mail corporativo"
+              autocomplete="email"
+              name = "email"
+              [(ngModel)] = "loginObj.email"
+            />
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="password">
+            Senha
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              
+            </span>
+
+            <input
+              id="password"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              name = "password"
+              [(ngModel)] = "password"
+            />
+
+            <button
+              type="button"
+              class="password-toggle"
+              aria-label="Mostrar senha"
+            >
+              
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="forgot-password">
+          <a href="#">
+            Esqueci minha senha
+          </a>
+        </div>
+
+
+        <button
+          type="submit"
+          class="login-button"
+          (click) = "onLogar()"
+        >
+          <span>Entrar</span>
+          <span class="arrow">→</span>
+        </button>
+
+
+        <div class="divider">
+          <span></span>
+          <p>ou</p>
+          <span></span>
+        </div>
+
+
+        <div class="security-message">
+
+          <div class="security-icon">
+            ✓
+          </div>
+
+          <p>
+            Seus dados estão protegidos e
+            são tratados com segurança.
+          </p>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </section>
+
+</div>
