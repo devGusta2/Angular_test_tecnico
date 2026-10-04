@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { environment } from '../../../environments/environment.development';
+import { AuthService } from '../../core/services/auth.service';
+import { LoginRequest } from '../../core/services/LoginRequest';
+
 @Component({
   selector: 'app-login',
   imports: [FormsModule],
@@ -12,16 +14,23 @@ import { environment } from '../../../environments/environment.development';
 
 export class Login {
 
-  url = environment.apiUrl;
+  private authServices = inject(AuthService)
 
-  loginObj: any = {
-    "email": "",
-    "password": ""
+  loginObj: LoginRequest = {
+    email: '',
+    password: ''
   }
 
-  http = inject(HttpClient);
 
-  onLogar(){
-    this.http.post();
+  onLogar() :void {
+    this.authServices.login(this.loginObj).subscribe({
+      next: (response: any) =>{
+        console.log(response)
+      },
+      error: (error: any) =>{
+        console.log("Erro ao fazer login", error)
+      }
+    })
   }
+
 }

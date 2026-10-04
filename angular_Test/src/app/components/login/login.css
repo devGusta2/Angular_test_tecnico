@@ -37,14 +37,8 @@
   padding: 70px;
 
   overflow: hidden;
+  background-color: #062a4c;
 
-  background:
-    linear-gradient(
-      135deg,
-      #062a4c 0%,
-      #0b3b66 55%,
-      #082c4e 100%
-    );
 }
 
 
@@ -59,7 +53,7 @@
 }
 
 
-/* Logo */
+
 
 .brand-logo,
 .form-logo {
@@ -181,38 +175,8 @@
 
 /* Detalhes laranja */
 
-.brand-section::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  right: 0;
-
-  width: 35%;
-  height: 3px;
-
-  background: #f58220;
-
-  transform: rotate(35deg) translateX(20%);
-}
 
 
-.brand-section::after {
-  content: "";
-
-  position: absolute;
-
-  bottom: 40px;
-  left: -50px;
-
-  width: 220px;
-  height: 3px;
-
-  background: #f58220;
-
-  transform: rotate(45deg);
-}
 
 
 /* =====================================================
@@ -392,9 +356,6 @@
 }
 
 
-.forgot-password a:hover {
-  text-decoration: underline;
-}
 
 
 /* =====================================================
@@ -430,14 +391,7 @@
 }
 
 
-.login-button:hover {
-  background: #0b3b66;
 
-  box-shadow:
-    0 6px 16px rgba(9, 46, 82, 0.2);
-
-  transform: translateY(-1px);
-}
 
 
 .login-button:active {
@@ -452,9 +406,6 @@
 }
 
 
-.login-button:hover .arrow {
-  transform: translateX(4px);
-}
 
 
 /* =====================================================
