@@ -87,3 +87,21 @@ td {
 tbody tr:hover {
     background-color: #fafafa;
 }
+
+tbody button{
+    border-radius: 10px;
+    height: 35px;
+    width: 70px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+tbody button:nth-child(1){
+    background-color: rgb(99, 179, 99);
+}
+tbody button:nth-child(2){
+    background-color: rgb(233, 163, 34);
+}
+tbody button:nth-child(3){
+    background-color: rgb(219, 29, 29);
+}
