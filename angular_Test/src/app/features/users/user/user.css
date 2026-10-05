@@ -1,0 +1,89 @@
+.users-page {
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+#upper-page-field {
+    min-height: 180px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+#upper-page-field input {
+    width: 350px;
+    padding: 12px 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 14px;
+    outline: none;
+}
+
+#upper-page-field input:focus {
+    border-color: #23666D;
+}
+
+.btn-primary {
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #23666D;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+
+    background-color: white;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f5f5f5;
+}
+
+th,
+td {
+    padding: 14px 16px;
+    text-align: left;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+th {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+td {
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #fafafa;
+}

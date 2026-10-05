@@ -1,22 +1,41 @@
 <div class="users-page">
-    <div id = "upper-page-field">
-        <input type="text" placeholder="filtro">
-        <button>Cadastrar novo usuario</button>
-    </div>
-    <section>
 
+    <div id="upper-page-field">
+        <input type="text" placeholder="Filtrar usuário...">
+
+        <button class="btn-primary">
+            Cadastrar novo usuário
+        </button>
+    </div>
+
+    <section class="table-container">
 
         <table>
             <thead>
-                <tr>Id</tr>
-                <tr>E-mail</tr>
-                <tr>Nome</tr>
-                <tr>Telefone</tr>
-                <tr>Status</tr>
+                <tr>
+                    <th>ID</th>
+                    <th>E-mail</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Status</th>
+                </tr>
             </thead>
+
             <tbody>
-                
+                @for(item of userList; track item.id){
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.active}}</td>
+                </tr>
+                }
             </tbody>
         </table>
+
+
+
     </section>
+
 </div>
