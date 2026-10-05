@@ -32,12 +32,12 @@ export class UserDialog {
   adicionarEnd() {
     const endereco = this.fb.group({
       cep: ['', Validators.required],
-      rua: ['', Validators.required],
       numero: ['', Validators.required],
       complemento: [''],
-      estado: ['', Validators.required],
-      cidade: ['', Validators.required],
-      bairro: ['', Validators.required],
+      rua: [{ value: '', disabled: true }],
+      estado: [{ value: '', disabled: true }],
+      cidade: [{ value: '', disabled: true }],
+      bairro: [{ value: '', disabled: true }],
       principal: [false]
     });
     this.enderecos.push(endereco);

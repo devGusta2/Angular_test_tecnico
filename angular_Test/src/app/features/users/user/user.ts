@@ -21,7 +21,7 @@ export class User implements OnInit {
   userList: any[] = [];
   cdr = inject(ChangeDetectorRef);
   listUsers() {
-    this.http.get(`${environment.apiUrl}/users/list`).subscribe((Res: any) => {
+    this.http.get(`${environment.apiUrl}/api/v1/users/list`).subscribe((Res: any) => {
       console.log(Res);
       this.userList = Res;
       this.cdr.detectChanges();
@@ -41,7 +41,7 @@ openDialog(tipo: 'create' | 'edit' | 'view' | 'delete', user?: any) {
 
   dialogRef.afterClosed().subscribe(payload => {
 
-    console.log('Payload recebido:', payload);
+    console.log(payload);
 
     if (!payload) {
       return;
