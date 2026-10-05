@@ -20,13 +20,13 @@ export class UserDialog {
     password: ['', Validators.required],
     phone: ['', Validators.required],
 
-    enderecos: this.fb.array<FormGroup>([])
+    endereco: this.fb.array<FormGroup>([])
   });
 
 
 
-  get enderecos() {
-    return this.userForm.controls.enderecos;
+  get endereco() {
+    return this.userForm.controls.endereco;
   }
 
   adicionarEnd() {
@@ -40,11 +40,11 @@ export class UserDialog {
       bairro: [{ value: '', disabled: true }],
       principal: [false]
     });
-    this.enderecos.push(endereco);
+    this.endereco.push(endereco);
   }
 
   removerEnd(index: number) {
-    this.enderecos.removeAt(index);
+    this.endereco.removeAt(index);
   }
 
   salvar() {
@@ -58,5 +58,19 @@ export class UserDialog {
 
   fechar() {
     this.dialogRef.close();
+  }
+
+
+
+
+
+
+
+
+
+  confirmarDeactivate(){
+    this.dialogRef.close({
+      id: this.data.user.id
+    })
   }
 }

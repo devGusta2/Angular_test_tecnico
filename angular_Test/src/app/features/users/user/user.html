@@ -31,9 +31,9 @@
                     <td>{{item.phone}}</td>
                     <td>{{item.active}}</td>
                     <td style="display: flex; justify-content: space-around;">
-                        <button (click)="openDialog('view')">Ver</button>
-                        <button (click)="openDialog('edit')">Editar</button>
-                        <button (click)="openDialog('delete')">Desativar</button>
+                        <button (click)="openDialog('view', item)">Ver</button>
+                        <button (click)="openDialog('edit', item)">Editar</button>
+                        <button (click)="openDialog('delete', item)">Desativar</button>
                     </td>
                     
                     

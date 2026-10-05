@@ -30,46 +30,61 @@ export class User implements OnInit {
   }
 
 
-openDialog(tipo: 'create' | 'edit' | 'view' | 'delete', user?: any) {
+  openDialog(tipo: 'create' | 'edit' | 'view' | 'delete', user?: any) {
 
-  const dialogRef = this.dialog.open(UserDialog, {
-    data: {
-      tipo: tipo,
-      user: user
-    }
-  });
+    const dialogRef = this.dialog.open(UserDialog, {
+      data: {
+        tipo: tipo,
+        user: user
+      }
+    });
+dialogRef.afterClosed().subscribe(payload => {
 
-  dialogRef.afterClosed().subscribe(payload => {
+  console.log('Payload recebido:', payload);
 
-    console.log(payload);
+  if (!payload) {
+    return;
+  }
 
-    if (!payload) {
-      return;
-    }
+  if (tipo === 'create') {
+    this.criarUsuario(payload);
+  }
 
-    if (tipo === 'create') {
-      this.criarUsuario(payload);
-    }
+  if (tipo === 'delete') {
+    this.desativarUsario(payload.id);
+  }
 
-  });
-}
+});
+
+  }
 
 
-criarUsuario(payload: any) {
-  console.log('Enviando para API:', payload);
+  criarUsuario(payload: any) {
+    // console.log('Enviando para API:', JSON.stringify(payload, null, 2));
 
-  // this.http.post(
-  //   `${environment.apiUrl}/users/create`,
-  //   payload
-  // ).subscribe({
-  //   next: () => {
-  //     this.listUsers();
-  //   },
-  //   error: (err) => {
-  //     console.error(err);
-  //   }
-  // });
-}
+
+    this.http.post(`${environment.apiUrl}/api/v1/users/create`, payload).subscribe({
+      next: () => {
+        this.listUsers();
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
+
+  }
+
+
+  desativarUsario(id: any){
+    this.http.patch(`${environment.apiUrl}/api/v1/users/${id}/deactivate`,null).subscribe({
+      next: ()=>{
+        this.listUsers();
+      },
+      error: () =>{
+        console.log("Erro ao desativar usuario");
+      }
+    })
+  }
 
 
 }

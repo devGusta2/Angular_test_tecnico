@@ -81,9 +81,9 @@
 
             </div>
 
-            <div formArrayName="enderecos">
+            <div formArrayName="endereco">
 
-                @for (endereco of enderecos.controls; track $index) {
+                @for (endereco of endereco.controls; track $index) {
 
                     <div
                         class="address"
@@ -153,13 +153,19 @@
     }
 
 
-    @else if (tipo === 'delete') {
 
-        <p>
-            Tem certeza que deseja excluir esse usuário?
-        </p>
+    @if (tipo === 'delete') {
+
+        <button
+            mat-button
+            type="button"
+            (click)="confirmarDeactivate()"
+        >
+            Confirmar desativação
+        </button>
 
     }
+
 
 </mat-dialog-content>
 
