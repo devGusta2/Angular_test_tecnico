@@ -135,18 +135,26 @@
                         </label>
 
 
+                        @if (!endereco.get('id')?.value) {
                         <button
                             type="button"
                             (click)="removerEnd($index)"
                         >
                             Remover endereço
                         </button>
+                        } @else {
+                            <small>Endereços existentes não podem ser removidos por este fluxo.</small>
+                        }
 
                     </div>
 
                 }
 
             </div>
+
+            @if (addressError) {
+                <p class="form-error" role="alert">{{ addressError }}</p>
+            }
 
         </form>
 
