@@ -4,8 +4,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
     "types": [
-      "vitest/globals"
+      "jest"
     ]
   },
   "include": [

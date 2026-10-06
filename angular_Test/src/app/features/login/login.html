@@ -1,0 +1,151 @@
+<div class="login-page">
+
+
+  <section class="brand-section">
+
+    <div class="brand-content">
+
+      <div class="brand-logo">
+        <div class="logo-icon">DV</div>
+
+        <div class="logo-text">
+          <strong>Teste tecnico</strong>
+
+        </div>
+      </div>
+
+      <div class="brand-message">
+        <h1>
+          Teste tecnico
+          <span>Angular</span>
+        </h1>
+
+        <p>
+          Teste técnico feito por Gustavo Rodrigues
+        </p>
+      </div>
+
+    </div>
+
+
+
+  </section>
+
+
+  <section class="form-section">
+
+    <div class="login-container">
+
+      <div class="form-logo">
+        <div class="logo-icon">Teste</div>
+
+        <div class="logo-text">
+          <strong>Teste tecnico</strong>
+   
+        </div>
+      </div>
+
+
+      <div class="welcome">
+        <h2>Bem-vindo!</h2>
+
+        <p>
+          Faça login para continuar
+        </p>
+      </div>
+
+
+      <form>
+
+  
+        <div class="form-group">
+
+          <label for="email">
+            E-mail
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              
+            </span>
+
+            <input
+                  (focus)="onDigitando()"
+              id="email"
+              type="email"
+              placeholder="Digite seu e-mail corporativo"
+              autocomplete="email"
+              name = "email"
+              [(ngModel)] = "loginObj.email"
+            />
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="password">
+            Senha
+          </label>
+
+          <div class="input-container">
+
+            <span class="input-icon">
+              
+            </span>
+
+            <input
+                  (focus)="onDigitando()"
+              id="password"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              name = "password"
+              [(ngModel)] = "loginObj.password"
+            />
+
+            <button
+      
+              type="button"
+              class="password-toggle"
+              aria-label="Mostrar senha"
+            >
+              
+            </button>
+
+          </div>
+          @if(invalid){
+            <h4 style="color:red">Credenciais inválidas</h4>
+          }
+        </div>
+
+
+        <div class="forgot-password">
+          <a href="#">
+            Esqueci minha senha
+          </a>
+        </div>
+
+
+        <button
+          type="submit"
+          class="login-button"
+          (click) = "onLogar()"
+        >
+          <span>Entrar</span>
+          <span class="arrow">→</span>
+        </button>
+
+
+
+
+
+      </form>
+
+    </div>
+
+  </section>
+
+</div>
