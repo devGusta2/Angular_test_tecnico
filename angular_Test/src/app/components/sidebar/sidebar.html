@@ -1,54 +1,26 @@
 <nav class="sidebar">
-
   <div class="sidebar-header">
-
-    <div class="logo-icon">
-      Teste tecnnico
-    </div>
-
+    <div class="logo-icon">Teste tecnico</div>
     <div class="logo-text">
       <strong>Teste tecnico</strong>
       <span>TRANSPORTES</span>
     </div>
-
   </div>
-
 
   <div class="menu">
-
-    <span class="menu-title">
-      MENU
-    </span>
-
-    <a
-      routerLink="/admin/dashboard"
-      routerLinkActive="active"
-      class="menu-item"
-    >
-      <span class="icon">⌂</span>
-      <span>Dashboard</span>
-    </a>
-
-    <a
-      routerLink="/admin/user"
-      routerLinkActive="active"
-      class="menu-item"
-    >
-      <span class="icon">♙</span>
-      <span>Usuários</span>
-    </a>
-
+    <span class="menu-title">MENU</span>
+    @if (isAdmin) {
+      <a routerLink="/admin/user" routerLinkActive="active" class="menu-item">
+        <span class="icon">&#9823;</span><span>Usuarios</span>
+      </a>
+    } @else {
+      <a routerLink="/perfil" routerLinkActive="active" class="menu-item">
+        <span class="icon">&#9786;</span><span>Meu perfil</span>
+      </a>
+    }
   </div>
-
 
   <div class="sidebar-footer">
-
-
-
-    <button class="logout-button">
-      Sair
-    </button>
-
+    <button class="logout-button" type="button" (click)="logout()">Sair</button>
   </div>
-
 </nav>

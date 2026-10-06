@@ -6,6 +6,8 @@ export const autorizadoGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
   
-  return authService.autenticado()
-  ? true : router.createUrlTree(['/login']);
+  if (!authService.autenticado()) return router.createUrlTree(['/login']);
+  const allowedRoles = route.data['roles'] as string[] | undefined;
+  if (!allowedRoles || allowedRoles.includes(authService.getRole() ?? '')) return true;
+  return router.createUrlTree([authService.getRole() === 'ADMIN' ? '/admin/user' : '/perfil']);
 };

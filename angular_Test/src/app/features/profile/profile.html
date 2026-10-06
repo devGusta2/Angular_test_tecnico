@@ -1,0 +1,39 @@
+<section class="profile-page">
+  <header class="profile-header">
+    <div>
+      <h1>Meu perfil</h1>
+      <p>Consulte e atualize suas informacoes pessoais.</p>
+    </div>
+    @if (user) {
+      <button class="btn-primary" type="button" (click)="editarPerfil()">Editar perfil</button>
+    }
+  </header>
+
+  @if (user) {
+    <section class="profile-card" aria-label="Informacoes do perfil">
+      <dl class="profile-details">
+        <div><dt>Nome</dt><dd>{{ user.name }}</dd></div>
+        <div><dt>E-mail</dt><dd>{{ user.email }}</dd></div>
+        <div><dt>Telefone</dt><dd>{{ user.phone }}</dd></div>
+        <div><dt>Status</dt><dd>{{ user.active ? 'Ativo' : 'Inativo' }}</dd></div>
+      </dl>
+
+      <h2>Enderecos</h2>
+      @if (user.enderecos?.length) {
+        @for (address of user.enderecos; track address.id) {
+          <article class="address-card">
+            <strong>{{ address.rua }}, {{ address.numero }}</strong>
+            <span>{{ address.complemento }}</span>
+            <span>{{ address.bairro }}, {{ address.cidade }} - {{ address.estado }}</span>
+            <span>CEP {{ address.cep }}@if (address.principal) { · Principal }</span>
+            <button type="button" (click)="removerEndereco(address)">Remover endereco</button>
+          </article>
+        }
+      } @else {
+        <p>Nenhum endereco cadastrado.</p>
+      }
+    </section>
+  } @else {
+    <p>Carregando perfil...</p>
+  }
+</section>

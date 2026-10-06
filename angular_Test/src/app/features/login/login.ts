@@ -30,7 +30,7 @@ export class Login {
   onLogar() :void {
     this.authServices.login(this.loginObj).subscribe({
       next: (response: any) =>{
-        this.router.navigate(['/admin'])
+        this.router.navigate([response.role === 'ADMIN' ? '/admin/user' : '/perfil'])
       },
       error: (error: any) =>{
         this.invalid = true;
