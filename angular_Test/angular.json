@@ -24,10 +24,18 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/material-theme.scss", "src/styles.css"]
+            "styles": [
+              "src/material-theme.scss",
+              "src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": true,
+                "fonts": false
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -50,6 +58,7 @@
           },
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -62,6 +71,7 @@
           },
           "defaultConfiguration": "development"
         },
+
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
