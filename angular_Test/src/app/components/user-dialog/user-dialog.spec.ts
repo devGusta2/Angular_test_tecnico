@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserDialog } from './user-dialog';
-import { NgModel } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 describe('UserDialog', () => {
   let component: UserDialog;
@@ -9,7 +9,11 @@ describe('UserDialog', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserDialog, NgModel],
+      imports: [UserDialog],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: { tipo: 'create' } },
+        { provide: MatDialogRef, useValue: { close: () => undefined } }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserDialog);
