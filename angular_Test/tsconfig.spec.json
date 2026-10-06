@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src/app",
+    "rootDir": "./src",
     "outDir": "./out-tsc/spec",
     "module": "preserve",
     "moduleResolution": "bundler",
