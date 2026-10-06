@@ -1,49 +1,37 @@
 <div class="users-page">
+  <div id="upper-page-field">
+    <input type="search" placeholder="Filtrar por nome" [value]="nameFilter" (input)="nameFilter = $any($event.target).value">
+    <input type="search" placeholder="Filtrar por e-mail" [value]="emailFilter" (input)="emailFilter = $any($event.target).value">
+    <button type="button" (click)="filtrar()">Filtrar</button>
+    <button class="btn-primary" (click)="openDialog('create')">Cadastrar novo usuário</button>
+  </div>
 
-    <div id="upper-page-field">
-        <input type="text" placeholder="Filtrar usuário...">
+  <section class="table-container">
+    <table>
+      <thead><tr>
+        <th>ID</th><th>E-mail</th><th>Nome</th><th>Telefone</th><th>Status</th><th style="text-align: center">Ações</th>
+      </tr></thead>
+      <tbody>
+        @for (item of userList; track item.id) {
+          <tr>
+            <td>{{ item.id }}</td><td>{{ item.email }}</td><td>{{ item.name }}</td><td>{{ item.phone }}</td>
+            <td>{{ item.active ? 'Ativo' : 'Inativo' }}</td>
+            <td style="display: flex; justify-content: space-around">
+              <button (click)="openDialog('view', item)">Ver</button>
+              <button (click)="openDialog('edit', item)">Editar</button>
+              <button (click)="openDialog('delete', item)">Desativar</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr><td colspan="6">Nenhum usuário encontrado.</td></tr>
+        }
+      </tbody>
+    </table>
+  </section>
 
-        <button class="btn-primary" (click)="openDialog('create')">
-            Cadastrar novo usuário
-        </button>
-    </div>
-
-    <section class="table-container">
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>E-mail</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Status</th>
-                    <th style="text-align: center;">Ações</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @for(item of userList; track item.id){
-                <tr>
-                    <td>{{item.id}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.phone}}</td>
-                    <td>{{item.active}}</td>
-                    <td style="display: flex; justify-content: space-around;">
-                        <button (click)="openDialog('view', item)">Ver</button>
-                        <button (click)="openDialog('edit', item)">Editar</button>
-                        <button (click)="openDialog('delete', item)">Desativar</button>
-                    </td>
-                    
-                    
-                </tr>
-                }
-            </tbody>
-        </table>
-
-
-
-    </section>
-
+  <nav aria-label="Paginação de usuários">
+    <button type="button" (click)="mudarPagina(-1)" [disabled]="page === 0">Anterior</button>
+    <span>Página {{ page + 1 }} de {{ totalPages || 1 }}</span>
+    <button type="button" (click)="mudarPagina(1)" [disabled]="page + 1 >= totalPages">Próxima</button>
+  </nav>
 </div>
