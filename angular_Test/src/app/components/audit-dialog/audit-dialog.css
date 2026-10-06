@@ -1,0 +1,3 @@
+.audit-details { display: grid; gap: 16px; margin: 0; }
+.audit-details dt { margin-bottom: 4px; color: #666; font-size: 14px; }
+.audit-details dd { margin: 0; overflow-wrap: anywhere; }

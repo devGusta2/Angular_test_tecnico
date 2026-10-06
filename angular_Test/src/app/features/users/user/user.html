@@ -20,6 +20,7 @@
               <button (click)="openDialog('view', item)">Ver</button>
               <button (click)="openDialog('edit', item)">Editar</button>
               <button (click)="openDialog('delete', item)">Desativar</button>
+              <button type="button" title="Auditoria" aria-label="Auditoria" (click)="openAuditDialog(item)">Auditoria</button>
             </td>
           </tr>
         } @empty {

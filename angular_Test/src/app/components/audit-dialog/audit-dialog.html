@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Auditoria do usuário</h2>
+<mat-dialog-content>
+  <dl class="audit-details">
+    <div>
+      <dt>Criado em</dt>
+      <dd>{{ formatDate(data.createdAt) }}</dd>
+    </div>
+    <div>
+      <dt>Criado por</dt>
+      <dd>{{ data.createdBy ?? 'Não informado' }}</dd>
+    </div>
+    <div>
+      <dt>Atualizado em</dt>
+      <dd>{{ formatDate(data.updatedAt) }}</dd>
+    </div>
+    <div>
+      <dt>Atualizado por</dt>
+      <dd>{{ data.updatedBy ?? 'Não informado' }}</dd>
+    </div>
+  </dl>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="fechar()">Fechar</button>
+</mat-dialog-actions>

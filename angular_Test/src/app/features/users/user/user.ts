@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../../../../environments/environment.development';
 import { UserDialog } from '../../../components/user-dialog/user-dialog';
 import { FeedbackDialog, FeedbackDialogData } from '../../../components/feedback-dialog/feedback-dialog';
+import { AuditDialog } from '../../../components/audit-dialog/audit-dialog';
 
 @Component({
   selector: 'app-user',
@@ -81,6 +82,10 @@ export class User implements OnInit {
       if (tipo === 'edit' && user?.id) this.atualizarUsuario(user.id, payload);
       if (tipo === 'delete') this.desativarUsuario(payload.id);
     });
+  }
+
+  openAuditDialog(user: any): void {
+    this.dialog.open(AuditDialog, { data: user, width: '480px' });
   }
 
   atualizarUsuario(id: string, payload: any): void {
