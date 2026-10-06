@@ -18,6 +18,7 @@ export class User implements OnInit {
 
   http = inject(HttpClient)
   dialog = inject(MatDialog);
+  private apiUrl = environment.apiUrl;
   userList: any[] = [];
   cdr = inject(ChangeDetectorRef);
   listUsers() {
@@ -50,12 +51,33 @@ dialogRef.afterClosed().subscribe(payload => {
     this.criarUsuario(payload);
   }
 
+  if (tipo === 'edit' && user?.id) {
+    this.atualizarUsuario(user.id, payload);
+  }
+
   if (tipo === 'delete') {
     this.desativarUsario(payload.id);
   }
-
 });
 
+  }
+
+  atualizarUsuario(id: string, payload: any) {
+    this.http.patch<any>(`${this.apiUrl}/api/v1/users/${id}`, payload).subscribe({
+      next: (updatedUser) => {
+        this.userList = this.userList.map(user => user.id === updatedUser.id ? updatedUser : user);
+        this.cdr.detectChanges();
+        window.alert('Usuário atualizado com sucesso.');
+      },
+      error: (err) => {
+        const messages: Record<number, string> = {
+          400: 'Os dados informados são inválidos. Verifique os campos e os endereços principais.',
+          404: 'Usuário ou endereço não encontrado.',
+          409: 'Este e-mail já está cadastrado.'
+        };
+        window.alert(messages[err.status] ?? err.error?.message ?? 'Não foi possível atualizar o usuário.');
+      }
+    });
   }
 
 
