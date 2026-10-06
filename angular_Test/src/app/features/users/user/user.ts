@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../../../../environments/environment.development';
 import { UserDialog } from '../../../components/user-dialog/user-dialog';
+import { FeedbackDialog, FeedbackDialogData } from '../../../components/feedback-dialog/feedback-dialog';
 
 @Component({
   selector: 'app-user',
@@ -26,20 +27,16 @@ export class User implements OnInit {
   ngOnInit(): void { this.listUsers(); }
 
   listUsers(): void {
-    let params = new HttpParams()
-      .set('page', this.page)
-      .set('size', this.size)
-      .set('sort', 'name,asc');
+    let params = new HttpParams().set('page', this.page).set('size', this.size).set('sort', 'name,asc');
     if (this.nameFilter.trim()) params = params.set('name', this.nameFilter.trim());
     if (this.emailFilter.trim()) params = params.set('email', this.emailFilter.trim());
-
     this.http.get<any>(`${this.apiUrl}/api/v1/users/list`, { params }).subscribe({
       next: (response) => {
         this.userList = response.content ?? [];
         this.totalPages = response.totalPages ?? 0;
         this.cdr.detectChanges();
       },
-      error: (err) => window.alert(this.errorMessage(err, 'Não foi possível carregar os usuários.'))
+      error: (err) => this.showError(err, 'Nao foi possivel carregar os usuarios.')
     });
   }
 
@@ -55,14 +52,26 @@ export class User implements OnInit {
 
   private errorMessage(err: any, fallback: string): string {
     const messages: Record<number, string> = {
-      400: 'Os dados informados são inválidos. Verifique os campos e o CEP.',
-      401: 'Sua sessão expirou. Faça login novamente.',
-      403: 'Você não tem permissão para esta operação.',
-      404: 'Usuário ou endereço não encontrado.',
-      409: 'Este e-mail já está cadastrado.',
-      422: 'A operação viola uma regra de negócio, como selecionar mais de um endereço principal.'
+      400: 'Dados invalidos. Confira os campos e o CEP.',
+      401: 'Sua sessao expirou. Faca login novamente.',
+      403: 'Sua conta nao tem permissao para esta operacao.',
+      404: 'Usuario ou endereco nao encontrado.',
+      409: 'Este e-mail ja esta cadastrado.',
+      422: 'A operacao viola uma regra de negocio. Confira os enderecos principais.'
     };
-    return err.error?.detail ?? messages[err.status] ?? fallback;
+    return err.error?.detail ?? err.error?.message ?? messages[err.status] ?? fallback;
+  }
+
+  private showFeedback(data: FeedbackDialogData): void {
+    this.dialog.open(FeedbackDialog, { data, width: '400px' });
+  }
+
+  private showError(err: any, fallback: string): void {
+    this.showFeedback({
+      type: 'error',
+      title: 'Nao foi possivel concluir a operacao',
+      message: this.errorMessage(err, fallback)
+    });
   }
 
   openDialog(tipo: 'create' | 'edit' | 'view' | 'delete', user?: any): void {
@@ -76,22 +85,31 @@ export class User implements OnInit {
 
   atualizarUsuario(id: string, payload: any): void {
     this.http.patch<any>(`${this.apiUrl}/api/v1/users/${id}`, payload).subscribe({
-      next: () => this.listUsers(),
-      error: (err) => window.alert(this.errorMessage(err, 'Não foi possível atualizar o usuário.'))
+      next: () => {
+        this.showFeedback({ type: 'success', title: 'Usuario atualizado', message: 'As alteracoes foram salvas com sucesso.' });
+        this.listUsers();
+      },
+      error: (err) => this.showError(err, 'Nao foi possivel atualizar o usuario.')
     });
   }
 
   criarUsuario(payload: any): void {
     this.http.post(`${this.apiUrl}/api/v1/users/create`, payload).subscribe({
-      next: () => this.listUsers(),
-      error: (err) => window.alert(this.errorMessage(err, 'Não foi possível criar o usuário.'))
+      next: () => {
+        this.showFeedback({ type: 'success', title: 'Usuario cadastrado', message: 'O novo usuario foi cadastrado com sucesso.' });
+        this.listUsers();
+      },
+      error: (err) => this.showError(err, 'Nao foi possivel cadastrar o usuario.')
     });
   }
 
   desativarUsuario(id: string): void {
     this.http.patch(`${this.apiUrl}/api/v1/users/${id}/deactivate`, null).subscribe({
-      next: () => this.listUsers(),
-      error: (err) => window.alert(this.errorMessage(err, 'Não foi possível desativar o usuário.'))
+      next: () => {
+        this.showFeedback({ type: 'success', title: 'Usuario desativado', message: 'O usuario foi desativado com sucesso.' });
+        this.listUsers();
+      },
+      error: (err) => this.showError(err, 'Nao foi possivel desativar o usuario.')
     });
   }
 }
